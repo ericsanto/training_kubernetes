@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-postgres
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-postgres
+  template:
+    metadata:
+      labels:
+        app: app-postgres
+    spec:
+      containers:
+      - name: postgres-container
+        image: postgres:15
+        envFrom:
+        - secretRef:
+            name: secret-database
+    
+
+        
+     
+
